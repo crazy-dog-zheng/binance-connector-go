@@ -1331,7 +1331,7 @@ type BalanceService struct {
 
 func (s *BalanceService) Do(ctx context.Context) (res []*BalanceResponse, err error) {
 	r := &request{
-		method:   http.MethodPost,
+		method:   http.MethodGet,
 		endpoint: BalanceEndpoint,
 		secType:  secTypeSigned,
 	}
