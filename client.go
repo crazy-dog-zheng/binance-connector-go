@@ -731,6 +731,10 @@ func (c *Client) NewFundingWalletService() *FundingWalletService {
 	return &FundingWalletService{c: c}
 }
 
+func (c *Client) NewBalanceService() *BalanceService {
+	return &BalanceService{c: c}
+}
+
 func (c *Client) NewUserAssetService() *UserAssetService {
 	return &UserAssetService{c: c}
 }
