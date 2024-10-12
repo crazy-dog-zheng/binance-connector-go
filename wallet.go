@@ -1348,7 +1348,7 @@ func (s *BalanceService) Do(ctx context.Context) (res []*BalanceResponse, err er
 }
 
 type BalanceResponse struct {
-	Activate   string `json:"activate"`
+	Activate   bool   `json:"activate"`
 	Balance    string `json:"balance"`
 	WalletName string `json:"walletName"`
 }

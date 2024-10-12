@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	binance_connector "github.com/binance/binance-connector-go"
+	binance_connector "github.com/Absinthenico/binance-connector-go"
 )
 
 func main() {
@@ -20,7 +20,8 @@ func UserAsset() {
 
 	// UserAssetService - /sapi/v3/asset/getUserAsset
 	//userAsset, err := client.NewUserAssetService().Asset("BTC").Do(context.Background())
-	allCoinsInfo, err := client.NewGetAllCoinsInfoService().Do(context.Background())
+	//allCoinsInfo, err := client.NewGetAllCoinsInfoService().Do(context.Background())
+	allCoinsInfo, err := client.NewBalanceService().Do(context.Background())
 	if err != nil {
 		fmt.Println(err)
 		return
