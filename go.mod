@@ -1,4 +1,4 @@
-module github.com/Absinthenico/binance-connector-go
+module github.com/binance/binance-connector-go
 
 go 1.22
 
@@ -14,5 +14,3 @@ require (
 	github.com/stretchr/objx v0.5.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-
