@@ -1321,6 +1321,38 @@ type FundingWalletResponse struct {
 	BtcValuation string `json:"btcValuation"`
 }
 
+const (
+	BalanceEndpoint = "/sapi/v1/asset/wallet/balance"
+)
+
+type BalanceService struct {
+	c *Client
+}
+
+func (s *BalanceService) Do(ctx context.Context) (res []*BalanceResponse, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: BalanceEndpoint,
+		secType:  secTypeSigned,
+	}
+	data, err := s.c.callAPI(ctx, r)
+	if err != nil {
+		return nil, err
+	}
+	res = make([]*BalanceResponse, 0)
+	err = json.Unmarshal(data, &res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+type BalanceResponse struct {
+	Activate   bool   `json:"activate"`
+	Balance    string `json:"balance"`
+	WalletName string `json:"walletName"`
+}
+
 // User Asset (USER_DATA)
 const (
 	userAssetEndpoint = "/sapi/v3/asset/getUserAsset"
