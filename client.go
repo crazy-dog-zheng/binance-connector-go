@@ -285,6 +285,10 @@ func (c *Client) NewOrderBookService() *OrderBook {
 	return &OrderBook{c: c}
 }
 
+func (c *Client) NewRecentLinearTradesListService() *RecentLinearTradesList {
+	return &RecentLinearTradesList{c: c}
+}
+
 func (c *Client) NewRecentTradesListService() *RecentTradesList {
 	return &RecentTradesList{c: c}
 }

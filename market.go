@@ -201,6 +201,54 @@ type OrderBookResponse struct {
 	Asks         [][]*big.Float `json:"asks"`
 }
 
+// Binance Recent U-base Linear Trades List endpoint (GET /api/v3/trades)
+type RecentLinearTradesList struct {
+	c      *Client
+	symbol string
+	limit  *int
+}
+
+func (s *RecentLinearTradesList) Symbol(symbol string) *RecentLinearTradesList {
+	s.symbol = symbol
+	return s
+}
+
+func (s *RecentLinearTradesList) Limit(limit int) *RecentLinearTradesList {
+	s.limit = &limit
+	return s
+}
+
+// Send the request
+func (s *RecentLinearTradesList) Do(ctx context.Context, opts ...RequestOption) (res []*RecentLinearTradesList, err error) {
+	r := &request{
+		method:   http.MethodGet,
+		endpoint: "/dapi/v1/trades",
+		secType:  secTypeNone,
+	}
+	r.setParam("symbol", s.symbol)
+	if s.limit != nil {
+		r.setParam("limit", *s.limit)
+	}
+	data, err := s.c.callAPI(ctx, r, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = json.Unmarshal(data, &res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+type RecentLinearTradesListResponse struct {
+	Id           uint64 `json:"id"`
+	Price        string `json:"price"`
+	Qty          string `json:"qty"`
+	QuoteQty     string `json:"quoteQty"`
+	Time         uint64 `json:"time"`
+	IsBuyerMaker bool   `json:"isBuyerMaker"`
+}
+
 // Binance Recent Trades List endpoint (GET /api/v3/trades)
 type RecentTradesList struct {
 	c      *Client
