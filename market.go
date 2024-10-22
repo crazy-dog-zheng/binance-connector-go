@@ -222,7 +222,7 @@ func (s *RecentLinearTradesList) Limit(limit int) *RecentLinearTradesList {
 func (s *RecentLinearTradesList) Do(ctx context.Context, opts ...RequestOption) (res []*RecentLinearTradesListResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/dapi/v1/trades",
+		endpoint: "/fapi/v1/trades",
 		secType:  secTypeNone,
 	}
 	r.setParam("symbol", s.symbol)
