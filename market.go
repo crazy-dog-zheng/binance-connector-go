@@ -219,7 +219,7 @@ func (s *RecentLinearTradesList) Limit(limit int) *RecentLinearTradesList {
 }
 
 // Send the request
-func (s *RecentLinearTradesList) Do(ctx context.Context, opts ...RequestOption) (res []*RecentLinearTradesList, err error) {
+func (s *RecentLinearTradesList) Do(ctx context.Context, opts ...RequestOption) (res []*RecentLinearTradesListResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
 		endpoint: "/dapi/v1/trades",
