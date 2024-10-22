@@ -201,6 +201,10 @@ type OrderBookResponse struct {
 	Asks         [][]*big.Float `json:"asks"`
 }
 
+const (
+	RecentLinearTradesEndpoint = "/fapi/v1/trades"
+)
+
 // Binance Recent U-base Linear Trades List endpoint (GET /api/v3/trades)
 type RecentLinearTradesList struct {
 	c      *Client
@@ -222,7 +226,7 @@ func (s *RecentLinearTradesList) Limit(limit int) *RecentLinearTradesList {
 func (s *RecentLinearTradesList) Do(ctx context.Context, opts ...RequestOption) (res []*RecentLinearTradesListResponse, err error) {
 	r := &request{
 		method:   http.MethodGet,
-		endpoint: "/fapi/v1/trades",
+		endpoint: RecentLinearTradesEndpoint,
 		secType:  secTypeNone,
 	}
 	r.setParam("symbol", s.symbol)
